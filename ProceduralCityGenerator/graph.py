@@ -31,6 +31,7 @@ class Node():
 
         self.edges = []
         self.border_edges = []
+        self.curves = []
 
     @property
     def node_type(self):
