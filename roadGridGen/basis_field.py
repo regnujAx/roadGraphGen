@@ -1,5 +1,5 @@
 import math
-from ProceduralCityGenerator.tensor import Tensor
+from roadGridGen.tensor import Tensor
 from mathutils import Vector
 
 

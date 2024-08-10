@@ -7,7 +7,7 @@ from enum import Enum
 # from . integrator import FieldIntegrator
 # from . streamline_parameters import StreamlineParameters
 # from . simplify import simplify
-from ProceduralCityGenerator.streamlines import StreamlineGenerator
+from roadGridGen.streamlines import StreamlineGenerator
 
 
 class NodeType(Enum):

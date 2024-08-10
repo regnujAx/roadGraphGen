@@ -3,18 +3,20 @@ import bmesh
 import math
 from mathutils import Vector
 from time import time
-from ProceduralCityGenerator.streamlines import StreamlineGenerator
-from ProceduralCityGenerator.tensor_field import TensorField
-from ProceduralCityGenerator.integrator import RK4Integrator
-from ProceduralCityGenerator.streamline_parameters import StreamlineParameters
-from ProceduralCityGenerator.graph import Graph
-from ProceduralCityGenerator.lot_finder import LotFinder
+from roadGridGen.streamlines import StreamlineGenerator
+from roadGridGen.tensor_field import TensorField
+from roadGridGen.integrator import RK4Integrator
+from roadGridGen.streamline_parameters import StreamlineParameters
+from roadGridGen.graph import Graph
+from roadGridGen.lot_finder import LotFinder
 
 
 bl_info = {
-    "name": "Grid Generator Spike",
+    "name": "roadGridGen",
     "blender": (3, 6, 0),
-    "category": "Object"
+    "location": "View3D > Toolbar > roadGridGen",
+    "category": "Object",
+    "description": "Generate a procedural road grid."
 }
 
 
@@ -26,26 +28,25 @@ bl_info = {
 ###############################################################
 
 
-class GridGenBasePanel():
-    bl_space_type = 'VIEW_3D'
-    bl_region_type = 'UI'
-    bl_category = "grid gen"
+class RNG_BasePanel():
+    bl_space_type = "VIEW_3D"
+    bl_region_type = "UI"
+    bl_category = "RoadGridGen"
 
 
 # Creates panel in the 3D Viewport sidebar (open with 'N' by default).
 # Includes button to execute main function and test generation of road graph based on tensor field
 # defined manually below.
-class GridGenGridPanel(GridGenBasePanel, bpy.types.Panel):
-    bl_label = "Grid Generator"
+class RNG_RoadGridPanel(RNG_BasePanel, bpy.types.Panel):
+    bl_label = "Road Grid Generator"
 
     def draw(self, context):
         layout = self.layout
-        col = layout.column()
-        col.operator("operator.grid_gen_generate")
+        layout.operator("rng.generate_grid")
 
 
-class GridGenGenerateGrid(bpy.types.Operator):
-    bl_idname = "operator.grid_gen_generate"
+class RNG_GenerateGrid(bpy.types.Operator):
+    bl_idname = "rng.generate_grid"
     bl_label = "Generate"
 
     def execute(self, context):
@@ -55,8 +56,8 @@ class GridGenGenerateGrid(bpy.types.Operator):
 
 
 classes = [
-    GridGenGridPanel,
-    GridGenGenerateGrid
+    RNG_RoadGridPanel,
+    RNG_GenerateGrid
 ]
 
 

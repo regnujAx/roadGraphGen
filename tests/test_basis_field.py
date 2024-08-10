@@ -1,7 +1,7 @@
 import unittest
 import math
-from ProceduralCityGenerator.basis_field import GridBasisField, RadialBasisField, BasisField
-from ProceduralCityGenerator.tensor import Tensor
+from roadGridGen.basis_field import GridBasisField, RadialBasisField, BasisField
+from roadGridGen.tensor import Tensor
 from mathutils import Vector
 
 

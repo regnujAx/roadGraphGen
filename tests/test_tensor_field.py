@@ -1,9 +1,9 @@
 import unittest
 import math
 from mathutils import Vector
-from ProceduralCityGenerator.tensor import Tensor
-from ProceduralCityGenerator.tensor_field import TensorField
-from ProceduralCityGenerator.basis_field import GridBasisField, RadialBasisField
+from roadGridGen.tensor import Tensor
+from roadGridGen.tensor_field import TensorField
+from roadGridGen.basis_field import GridBasisField, RadialBasisField
 
 
 class TestTensorField(unittest.TestCase):

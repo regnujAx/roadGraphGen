@@ -1,6 +1,6 @@
-from ProceduralCityGenerator.tensor import Tensor
+from roadGridGen.tensor import Tensor
 from mathutils import Vector
-from ProceduralCityGenerator.basis_field import GridBasisField, RadialBasisField
+from roadGridGen.basis_field import GridBasisField, RadialBasisField
 
 
 # The TensorField class serves as the global tensor field.

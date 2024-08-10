@@ -2,10 +2,10 @@ import math
 import numpy as np
 from mathutils import Vector
 from collections import deque
-from ProceduralCityGenerator.grid_storage import GridStorage
-from ProceduralCityGenerator.integrator import FieldIntegrator
-from ProceduralCityGenerator.streamline_parameters import StreamlineParameters
-from ProceduralCityGenerator.simplify import simplify
+from roadGridGen.grid_storage import GridStorage
+from roadGridGen.integrator import FieldIntegrator
+from roadGridGen.streamline_parameters import StreamlineParameters
+from roadGridGen.simplify import simplify
 
 
 class StreamlineIntegration:

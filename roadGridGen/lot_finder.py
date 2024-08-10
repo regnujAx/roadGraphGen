@@ -1,6 +1,6 @@
 import math
 from mathutils import Vector
-from ProceduralCityGenerator.graph import Graph, DirectedEdge
+from roadGridGen.graph import Graph, DirectedEdge
 
 
 class Lot():

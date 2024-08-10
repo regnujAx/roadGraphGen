@@ -1,6 +1,6 @@
-from ProceduralCityGenerator.tensor_field import TensorField
+from roadGridGen.tensor_field import TensorField
 from mathutils import Vector
-from ProceduralCityGenerator.streamline_parameters import StreamlineParameters
+from roadGridGen.streamline_parameters import StreamlineParameters
 
 
 # Integrators are used for iterative approximate discretization/integration of stream-

@@ -1,7 +1,7 @@
 import unittest
 import math
 from mathutils import Vector
-from ProceduralCityGenerator.tensor import Tensor
+from roadGridGen.tensor import Tensor
 
 
 class TestTensor(unittest.TestCase):
