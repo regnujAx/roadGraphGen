@@ -1,14 +1,14 @@
 import bpy
 
-from roadGridGen.graph_generator import RGG_GraphGenerator
+from .graph_generator import RNG_GraphGenerator
 
 
 bl_info = {
-    "name": "roadGridGen",
+    "name": "roadNetGen",
     "blender": (3, 6, 12),
-    "location": "View3D > Toolbar > roadGridGen",
+    "location": "View3D > Toolbar > RoadNetGen",
     "category": "Object",
-    "description": "Generate a procedural road grid."
+    "description": "Generate a procedural road net."
 }
 
 
@@ -18,10 +18,10 @@ bl_info = {
 # ------------------------------------------------------------------------
 
 
-class RGG_BasePanel():
+class RNG_BasePanel():
     bl_space_type = "VIEW_3D"
     bl_region_type = "UI"
-    bl_category = "RoadGridGen"
+    bl_category = "RoadNetGen"
 
 
 # ------------------------------------------------------------------------
@@ -32,12 +32,12 @@ class RGG_BasePanel():
 # Creates panel in the 3D Viewport sidebar (open with 'N' by default).
 # Includes button to execute main function and test generation of road graph based on tensor field
 # defined manually below.
-class RGG_RoadGridPanel(RGG_BasePanel, bpy.types.Panel):
-    bl_label = "Road Grid Generator"
+class RNG_RoadNetPanel(RNG_BasePanel, bpy.types.Panel):
+    bl_label = "Road Net Generator"
 
     def draw(self, context):
         layout = self.layout
-        layout.operator("rgg.generate_grid")
+        layout.operator("rng.generate_net")
 
 
 # ------------------------------------------------------------------------
@@ -45,8 +45,8 @@ class RGG_RoadGridPanel(RGG_BasePanel, bpy.types.Panel):
 # ------------------------------------------------------------------------
 
 
-class RGG_GenerateGrid(bpy.types.Operator):
-    bl_idname = "rgg.generate_grid"
+class RNG_GenerateNet(bpy.types.Operator):
+    bl_idname = "rng.generate_net"
     bl_label = "Generate"
 
     def execute(self, context):
@@ -56,7 +56,7 @@ class RGG_GenerateGrid(bpy.types.Operator):
 
 
 def generate():
-    graph_generator = RGG_GraphGenerator(crossroad_offset=8.0)
+    graph_generator = RNG_GraphGenerator(crossroad_offset=8.0)
     graph_generator.generate_graph()
 
 
@@ -66,8 +66,8 @@ def generate():
 
 
 classes = [
-    RGG_RoadGridPanel,
-    RGG_GenerateGrid
+    RNG_RoadNetPanel,
+    RNG_GenerateNet
 ]
 
 

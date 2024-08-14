@@ -5,15 +5,15 @@ import math
 from mathutils import Vector
 from time import time
 
-from roadGridGen.graph import Graph
-from roadGridGen.integrator import RK4Integrator
-from roadGridGen.lot_finder import LotFinder
-from roadGridGen.streamline_parameters import StreamlineParameters
-from roadGridGen.streamlines import StreamlineGenerator
-from roadGridGen.tensor_field import TensorField
+from .graph import Graph
+from .integrator import RK4Integrator
+from .lot_finder import LotFinder
+from .streamline_parameters import StreamlineParameters
+from .streamlines import StreamlineGenerator
+from .tensor_field import TensorField
 
 
-class RGG_GraphGenerator():
+class RNG_GraphGenerator():
     def __init__(self, crossroad_offset: float = 0.0):
         self.crossroad_offset = crossroad_offset
         # Create new global TensorField
@@ -104,7 +104,7 @@ def clockwise_angle(point: Vector):
     diff = vector[0] * reference_vector[1] - vector[1] * reference_vector[0]
     angle = math.atan2(diff, dot)
 
-    # Negative angles represent counter-clockwise angles so we need to subtract them from 2 * pi (360 degrees).
+    # Negative angles represent counter-clockwise angles so we need to subtract them from 2 * pi (= 360 degrees).
     if angle < 0:
         return 2 * math.pi + angle
 

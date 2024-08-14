@@ -1,7 +1,7 @@
 import unittest
 import math
 from mathutils import Vector
-from roadGridGen.tensor import Tensor
+from roadNetGen.tensor import Tensor
 
 
 class TestTensor(unittest.TestCase):

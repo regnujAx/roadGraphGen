@@ -1,7 +1,7 @@
 import unittest
 import math
-from roadGridGen.basis_field import GridBasisField, RadialBasisField, BasisField
-from roadGridGen.tensor import Tensor
+from roadNetGen.basis_field import GridBasisField, RadialBasisField, BasisField
+from roadNetGen.tensor import Tensor
 from mathutils import Vector
 
 

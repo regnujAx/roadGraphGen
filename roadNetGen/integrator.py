@@ -1,6 +1,7 @@
-from roadGridGen.tensor_field import TensorField
 from mathutils import Vector
-from roadGridGen.streamline_parameters import StreamlineParameters
+
+from .streamline_parameters import StreamlineParameters
+from .tensor_field import TensorField
 
 
 # Integrators are used for iterative approximate discretization/integration of stream-

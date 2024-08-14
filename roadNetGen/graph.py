@@ -1,13 +1,9 @@
 import math
-from mathutils import Vector
-from mathutils import geometry
 from collections import deque
 from enum import Enum
-# from . grid_storage import GridStorage
-# from . integrator import FieldIntegrator
-# from . streamline_parameters import StreamlineParameters
-# from . simplify import simplify
-from roadGridGen.streamlines import StreamlineGenerator
+from mathutils import geometry, Vector
+
+from .streamlines import StreamlineGenerator
 
 
 class NodeType(Enum):

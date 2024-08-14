@@ -1,6 +1,8 @@
 import math
+
 from mathutils import Vector
-from roadGridGen.graph import Graph, DirectedEdge
+
+from .graph import Graph, DirectedEdge
 
 
 class Lot():

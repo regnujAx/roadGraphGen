@@ -1,6 +1,8 @@
 import math
-from roadGridGen.tensor import Tensor
+
 from mathutils import Vector
+
+from .tensor import Tensor
 
 
 # The BasisField subclasses define specific tensor field patterns/designs.

@@ -1,5 +1,5 @@
-from mathutils import Vector
 from collections import deque
+from mathutils import Vector
 
 
 # This file offers a custom implementation of the Douglas-Peucker polyline simplification
