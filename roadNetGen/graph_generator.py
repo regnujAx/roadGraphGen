@@ -46,6 +46,7 @@ class RNG_GraphGenerator():
             origin=Vector((519, 249)),
             world_dimensions=Vector((145, 127)),  # 1452, 1279
             parameters=self.parameters,
+            # seed=94926396
         )
 
     def generate_graph(self):
@@ -88,25 +89,18 @@ class RNG_GraphGenerator():
 # ------------------------------------------------------------------------
 
 
-def clockwise_angle(point: Vector):
-    # Define a reference vector (y-axis).
-    reference_vector = Vector((0.0, 1.0, 0.0))
-
+def clockwise_angle(point: Vector, reference_vector: Vector):
     vector = point - reference_vector
     length = math.sqrt(sum(i**2 for i in vector))
 
     # If length of the vector is zero there is no angle.
     if length == 0:
-        return -math.pi
+        return 0.0
 
     vector.normalize()
     dot = vector[0] * reference_vector[0] + vector[1] * reference_vector[1]
     diff = vector[0] * reference_vector[1] - vector[1] * reference_vector[0]
     angle = math.atan2(diff, dot)
-
-    # Negative angles represent counter-clockwise angles so we need to subtract them from 2 * pi (= 360 degrees).
-    if angle < 0:
-        return 2 * math.pi + angle
 
     return angle
 
@@ -173,13 +167,14 @@ def mark_nodes_without_neighbor(graph):
         if [*node.border_neighbors]:
             continue
 
-        marker = bpy.data.objects.new("Marker", cube_mesh)
-        markers.objects.link(marker)
-        marker.location = node.co.to_3d()
-
-        reference_point = marker.location
         if node.curves:
+            marker = bpy.data.objects.new("Marker", cube_mesh)
+            markers.objects.link(marker)
+            marker.location = node.co.to_3d()
+
+            reference_point = marker.location
             sorted_curves = sort_curves(node.curves, reference_point)
+
             for i, curve in enumerate(sorted_curves):
                 marker[f"Curve {i+1}"] = curve.name
 
@@ -214,7 +209,6 @@ def mark_nodes_without_neighbor(graph):
 
 def sort_curves(curves: list, reference_point: Vector):
     direction_vectors = []
-
     # Calculate for each curve a direction vector from curve to reference point.
     for curve in curves:
         curve_point = closest_curve_point(curve, reference_point)
@@ -222,15 +216,24 @@ def sort_curves(curves: list, reference_point: Vector):
         # Save for each curve its direction vector.
         direction_vectors.append((curve, direction_vector))
 
+    reference_vector = direction_vectors[0][1]
     angles = []
     # Calculate the clockwise angle for each direction vector (the first direction vector is the origin/start).
     for vector in direction_vectors:
-        angle = clockwise_angle(vector[1])
-        angles.append((vector[0], angle))
+        angle = clockwise_angle(vector[1], reference_vector)
+        angles.append(angle)
+
+    # Check whether the lines cross straight and swap the order (set one angle to -1) if they do.
+    if len(angles) == 2 and round(angles[1], 2) == 3.14:
+        angles[1] = -1
+
+    vectors_and_angles = []
+    for vector, angle in zip(direction_vectors, angles):
+        vectors_and_angles.append((vector[0], angle))
 
     # Sort the direction vectors according to angle and extract the corresponding curves.
-    angles.sort(key=lambda x: x[1])
-    sorted_curves = [curve for curve, _ in angles]
+    vectors_and_angles.sort(key=lambda x: x[1])
+    sorted_curves = [curve for curve, _ in vectors_and_angles]
 
     return sorted_curves
 
