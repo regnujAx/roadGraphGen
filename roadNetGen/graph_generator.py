@@ -14,7 +14,7 @@ from .tensor_field import TensorField
 
 
 class RNG_GraphGenerator():
-    def __init__(self, crossroad_offset: float = 0.0):
+    def __init__(self, crossroad_offset: float = 0.0, seed: int = None):
         self.crossroad_offset = crossroad_offset
         # Create new global TensorField
         self.field = TensorField()
@@ -46,10 +46,10 @@ class RNG_GraphGenerator():
             origin=Vector((519, 249)),
             world_dimensions=Vector((145, 127)),  # 1452, 1279
             parameters=self.parameters,
-            # seed=94926396
+            seed=seed
         )
 
-    def generate_graph(self):
+    def generate(self):
         print("-- starting generation --")
 
         # Add two grid and one radial basis field to the global field.

@@ -41,7 +41,7 @@ class StreamlineGenerator:
             origin: Vector,
             world_dimensions: Vector,
             parameters: StreamlineParameters,
-            seed: float = None):
+            seed: int = None):
 
         self.SEED_AT_ENDPOINTS = False
         self.NEAR_EDGE = 3

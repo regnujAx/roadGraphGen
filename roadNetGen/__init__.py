@@ -50,14 +50,10 @@ class RNG_GenerateNet(bpy.types.Operator):
     bl_label = "Generate"
 
     def execute(self, context):
-        generate()
+        graph_generator = RNG_GraphGenerator()
+        graph_generator.generate()
 
         return {'FINISHED'}
-
-
-def generate():
-    graph_generator = RNG_GraphGenerator(crossroad_offset=8.0)
-    graph_generator.generate_graph()
 
 
 # ------------------------------------------------------------------------
