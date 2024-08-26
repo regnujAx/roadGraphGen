@@ -14,7 +14,7 @@ from .tensor_field import TensorField
 
 
 class RNG_GraphGenerator():
-    def __init__(self, seed: int = None):
+    def __init__(self, width: int = 100, height: int = 100, seed: int = None):
         # Create new global TensorField
         self.field = TensorField()
 
@@ -43,7 +43,7 @@ class RNG_GraphGenerator():
         self.generator = StreamlineGenerator(
             integrator=self.integrator,
             origin=Vector((519, 249)),
-            world_dimensions=Vector((145, 127)),  # 1452, 1279
+            world_dimensions=Vector((width, height)),
             parameters=self.parameters,
             seed=seed
         )
