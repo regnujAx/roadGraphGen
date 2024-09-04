@@ -49,7 +49,7 @@ class RNG_GraphGenerator():
         )
 
     def generate(self):
-        print("-- starting generation --")
+        print("\n\n--- Starting graph generation ---")
 
         # Add two grid and one radial basis field to the global field.
         self.field.add_grid(Vector((1381, 788)), 1500, 35, 1.983775)
@@ -57,18 +57,22 @@ class RNG_GraphGenerator():
         self.field.add_radial(Vector((800, 888)), 750, 55)
 
         # Generate all streamlines.
+        print("\n- Starting generation of streamlines -")
+
         t = time()
 
         self.generator.create_all_streamlines()
 
-        print(f"done generating in {time() - t:.2f}s")
+        print(f"Streamlines generation completed in {time() - t:.2f}s")
 
         # Generate graph from generated streamlines.
+        print("\n- Starting generation of graph -")
+
         t = time()
 
         self.graph = Graph(self.generator)
 
-        print(f"generated graph in {time() - t:.2f}s")
+        print(f"Graph generation completed in {time() - t:.2f}s")
 
         # # Visualize graph in Blender.
         # t = time()
