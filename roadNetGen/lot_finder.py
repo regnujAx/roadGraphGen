@@ -2,7 +2,7 @@ import math
 
 from mathutils import Vector
 
-from .graph import Graph, DirectedEdge
+from roadNetGen.roadNetGen.graph import Graph, DirectedEdge
 
 
 class Lot():

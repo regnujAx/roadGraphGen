@@ -2,7 +2,7 @@ import math
 
 from mathutils import Vector
 
-from .tensor import Tensor
+from roadNetGen.roadNetGen.tensor import Tensor
 
 
 # The BasisField subclasses define specific tensor field patterns/designs.

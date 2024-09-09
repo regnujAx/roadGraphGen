@@ -1,7 +1,9 @@
 import unittest
 import math
+
 from mathutils import Vector
-from roadNetGen.tensor import Tensor
+
+from roadNetGen.roadNetGen.tensor import Tensor
 
 
 class TestTensor(unittest.TestCase):

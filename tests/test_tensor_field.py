@@ -1,9 +1,11 @@
 import unittest
 import math
+
 from mathutils import Vector
-from roadNetGen.tensor import Tensor
-from roadNetGen.tensor_field import TensorField
-from roadNetGen.basis_field import GridBasisField, RadialBasisField
+
+from roadNetGen.roadNetGen.tensor import Tensor
+from roadNetGen.roadNetGen.tensor_field import TensorField
+from roadNetGen.roadNetGen.basis_field import GridBasisField, RadialBasisField
 
 
 class TestTensorField(unittest.TestCase):

@@ -1,6 +1,6 @@
 import bpy
 
-from .graph_generator import RNG_GraphGenerator
+from roadNetGen.roadNetGen.graph_generator import RNG_GraphGenerator
 
 
 bl_info = {

@@ -4,10 +4,10 @@ import numpy as np
 from collections import deque
 from mathutils import Vector
 
-from .grid_storage import GridStorage
-from .integrator import FieldIntegrator
-from .streamline_parameters import StreamlineParameters
-from .simplify import simplify
+from roadNetGen.roadNetGen.grid_storage import GridStorage
+from roadNetGen.roadNetGen.integrator import FieldIntegrator
+from roadNetGen.roadNetGen.streamline_parameters import StreamlineParameters
+from roadNetGen.roadNetGen.simplify import simplify
 
 
 class StreamlineIntegration:

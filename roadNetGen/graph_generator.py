@@ -5,12 +5,12 @@ import math
 from mathutils import Vector
 from time import time
 
-from .graph import Graph
-from .integrator import RK4Integrator
-# from .lot_finder import LotFinder
-from .streamline_parameters import StreamlineParameters
-from .streamlines import StreamlineGenerator
-from .tensor_field import TensorField
+from roadNetGen.roadNetGen.graph import Graph
+from roadNetGen.roadNetGen.integrator import RK4Integrator
+# from roadNetGen.roadNetGen.lot_finder import LotFinder
+from roadNetGen.roadNetGen.streamline_parameters import StreamlineParameters
+from roadNetGen.roadNetGen.streamlines import StreamlineGenerator
+from roadNetGen.roadNetGen.tensor_field import TensorField
 
 
 class RNG_GraphGenerator():

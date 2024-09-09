@@ -1,7 +1,7 @@
 from mathutils import Vector
 
-from .basis_field import GridBasisField, RadialBasisField
-from .tensor import Tensor
+from roadNetGen.roadNetGen.basis_field import GridBasisField, RadialBasisField
+from roadNetGen.roadNetGen.tensor import Tensor
 
 
 # The TensorField class serves as the global tensor field.

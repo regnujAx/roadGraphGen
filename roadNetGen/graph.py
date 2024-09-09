@@ -3,7 +3,7 @@ from collections import deque
 from enum import Enum
 from mathutils import geometry, Vector
 
-from .streamlines import StreamlineGenerator
+from roadNetGen.roadNetGen.streamlines import StreamlineGenerator
 
 
 class NodeType(Enum):
