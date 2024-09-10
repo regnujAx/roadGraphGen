@@ -59,8 +59,6 @@ class StreamlineGenerator:
         self.seed = seed if seed is not None else self.randomize_seed()
         self.rng = np.random.default_rng(self.seed)
 
-        print(f"generating using seed {self.seed}")
-
         # Make sure dsep is not larger than dtest.
         parameters.dtest = min(parameters.dtest, parameters.dsep)
         self.dcollideself_sq = (parameters.dcirclejoin / 2) ** 2

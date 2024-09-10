@@ -69,6 +69,7 @@ class UndirectedEdge(Edge):
         self.directed_edges = []
         self._direction = None
         self._direction_backwards = None
+        self.major = False
 
     def set_directed_edges(self, edges: list['DirectedEdge']):
         self.directed_edges = edges
@@ -285,6 +286,10 @@ class Graph():
                 self.edges.append(edge)
                 start_node.add_edge(edge)
                 end_node.add_edge(edge)
+
+                # Check whether a section is part of a major streamline and set the edge to major if it is.
+                if sum(1 for element in section if element in self.streamlines.streamlines_major[0]) >= len(section) / 2:
+                    edge.major = True
 
                 start_neighbor.set_undirected_edge(edge)
                 end_neighbor.set_undirected_edge(edge)
