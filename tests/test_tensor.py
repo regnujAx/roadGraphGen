@@ -3,7 +3,7 @@ import math
 
 from mathutils import Vector
 
-from roadNetGen.roadNetGen.tensor import Tensor
+from roadGraphGen.roadGraphGen.tensor import Tensor
 
 
 class TestTensor(unittest.TestCase):

@@ -3,9 +3,9 @@ import math
 
 from mathutils import Vector
 
-from roadNetGen.roadNetGen.tensor import Tensor
-from roadNetGen.roadNetGen.tensor_field import TensorField
-from roadNetGen.roadNetGen.basis_field import GridBasisField, RadialBasisField
+from roadGraphGen.roadGraphGen.tensor import Tensor
+from roadGraphGen.roadGraphGen.tensor_field import TensorField
+from roadGraphGen.roadGraphGen.basis_field import GridBasisField, RadialBasisField
 
 
 class TestTensorField(unittest.TestCase):

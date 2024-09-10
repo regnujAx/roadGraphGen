@@ -3,8 +3,8 @@ import math
 
 from mathutils import Vector
 
-from roadNetGen.roadNetGen.basis_field import GridBasisField, RadialBasisField, BasisField
-from roadNetGen.roadNetGen.tensor import Tensor
+from roadGraphGen.roadGraphGen.basis_field import GridBasisField, RadialBasisField, BasisField
+from roadGraphGen.roadGraphGen.tensor import Tensor
 
 
 class TestBasisField(unittest.TestCase):
