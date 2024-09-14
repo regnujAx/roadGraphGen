@@ -1,6 +1,5 @@
-import bmesh
-import bpy
-import math
+# import bmesh
+# import bpy
 
 from mathutils import Vector
 from time import time
@@ -73,14 +72,6 @@ class RNG_GraphGenerator():
         self.graph = Graph(self.generator)
 
         print(f"Graph generation completed in {time() - t:.2f}s")
-
-        # # Visualize graph in Blender.
-        # t = time()
-
-        # visualize_edges(self.graph)
-        # mark_nodes_without_neighbor(self.graph)
-
-        # print(f"placed graph in {time() - t:.2f}s")
 
         # poly = LotFinder(graph)
         # poly.find_lots()
