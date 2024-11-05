@@ -1,5 +1,5 @@
-# import bmesh
-# import bpy
+import bmesh
+import bpy
 
 from mathutils import Vector
 from time import time
@@ -47,7 +47,7 @@ class RNG_GraphGenerator():
             seed=seed
         )
 
-    def generate(self):
+    def generate(self, with_visualization: bool = True):
         print(f"\n\n--- Starting graph generation with seed {self.generator.seed} ---")
 
         # Add two grid and one radial basis field to the global field.
@@ -73,6 +73,16 @@ class RNG_GraphGenerator():
 
         print(f"Graph generation completed in {time() - t:.2f}s")
 
+        if with_visualization:
+            print("\n- Starting visualization of graph -")
+
+            t = time()
+
+            visualize_edges(self.graph)
+            visualize_nodes(self.graph)
+
+            print(f"Graph visualization completed in {time() - t:.2f}s")
+
         # poly = LotFinder(graph)
         # poly.find_lots()
         # place_polygons(poly)
@@ -81,6 +91,66 @@ class RNG_GraphGenerator():
 # ------------------------------------------------------------------------
 #    Helper Method
 # ------------------------------------------------------------------------
+
+
+# Helper method to turn streamline sections of the graph into curves to visualize in Blender.
+def visualize_edges(graph: Graph, prefix=''):
+    try:
+        grid = bpy.data.collections[prefix + "grid"]
+        bpy.ops.object.select_all(action='DESELECT')
+        for child in grid.children:
+            for obj in child.objects:
+                obj.select_set(True)
+        for obj in grid.objects:
+            obj.select_set(True)
+        bpy.ops.object.delete()
+        for child in grid.children:
+            bpy.data.collections.remove(child)
+    except Exception:
+        grid = bpy.data.collections.new(prefix + "grid")
+        bpy.context.scene.collection.children.link(grid)
+
+    for streamline in graph.streamline_sections:
+        sl = bpy.data.collections.new("streamline")
+        grid.children.link(sl)
+        for section in streamline:
+            curve = bpy.data.curves.new("section", 'CURVE')
+            curve.splines.new('BEZIER')
+            curve.splines.active.bezier_points.add(len(section) - 1)
+            obj = bpy.data.objects.new("section", curve)
+            sl.objects.link(obj)
+            for i in range(len(section)):
+                curve.splines.active.bezier_points[i].co = section[i].to_3d()
+                curve.splines.active.bezier_points[i].handle_right_type = 'VECTOR'
+                curve.splines.active.bezier_points[i].handle_left_type = 'VECTOR'
+
+
+# Helper method to place cubes at node points of the generated graph.
+def visualize_nodes(graph: Graph, prefix=''):
+    try:
+        nodes = bpy.data.collections[prefix + "nodes"]
+        bpy.ops.object.select_all(action='DESELECT')
+        for obj in nodes.objects:
+            obj.select_set(True)
+        bpy.ops.object.delete()
+    except Exception:
+        nodes = bpy.data.collections.new(prefix + "nodes")
+        bpy.context.scene.collection.children.link(nodes)
+
+    cube_mesh = bpy.data.meshes.new('Basic_Cube')
+    bm = bmesh.new()
+    bmesh.ops.create_cube(bm, size=1.5)
+    bm.to_mesh(cube_mesh)
+    bm.free()
+
+    for node in graph.nodes:
+        if not [*node.neighbors]:
+            # Ignore the node if it has no neigbors
+            continue
+
+        n = bpy.data.objects.new("Node", cube_mesh)
+        nodes.objects.link(n)
+        n.location = node.co.to_3d()
 
 
 # def place_polygons(poly_generator: LotFinder):
