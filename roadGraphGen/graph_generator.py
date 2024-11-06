@@ -12,7 +12,7 @@ from roadGraphGen.roadGraphGen.streamlines import StreamlineGenerator
 from roadGraphGen.roadGraphGen.tensor_field import TensorField
 
 
-class RNG_GraphGenerator():
+class RGG_GraphGenerator():
     def __init__(self, width: int = 100, height: int = 100, seed: int = None):
         # Create new global TensorField
         self.field = TensorField()

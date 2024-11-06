@@ -1,6 +1,6 @@
 import bpy
 
-from roadGraphGen.roadGraphGen.graph_generator import RNG_GraphGenerator
+from roadGraphGen.roadGraphGen.graph_generator import RGG_GraphGenerator
 
 
 bl_info = {
@@ -18,7 +18,7 @@ bl_info = {
 # ------------------------------------------------------------------------
 
 
-class RNG_BasePanel():
+class RGG_BasePanel():
     bl_space_type = "VIEW_3D"
     bl_region_type = "UI"
     bl_category = "RoadNetGen"
@@ -32,7 +32,7 @@ class RNG_BasePanel():
 # Creates panel in the 3D Viewport sidebar (open with 'N' by default).
 # Includes button to execute main function and test generation of road graph based on tensor field
 # defined manually below.
-class RNG_RoadNetPanel(RNG_BasePanel, bpy.types.Panel):
+class RGG_RoadNetPanel(RGG_BasePanel, bpy.types.Panel):
     bl_label = "Road Net Generator"
 
     def draw(self, context):
@@ -45,12 +45,12 @@ class RNG_RoadNetPanel(RNG_BasePanel, bpy.types.Panel):
 # ------------------------------------------------------------------------
 
 
-class RNG_GenerateNet(bpy.types.Operator):
+class RGG_GenerateNet(bpy.types.Operator):
     bl_idname = "rng.generate_net"
     bl_label = "Generate"
 
     def execute(self, context):
-        graph_generator = RNG_GraphGenerator()
+        graph_generator = RGG_GraphGenerator()
         graph_generator.generate()
 
         return {'FINISHED'}
@@ -62,8 +62,8 @@ class RNG_GenerateNet(bpy.types.Operator):
 
 
 classes = [
-    RNG_RoadNetPanel,
-    RNG_GenerateNet
+    RGG_RoadNetPanel,
+    RGG_GenerateNet
 ]
 
 
