@@ -6,7 +6,6 @@ from time import time
 
 from roadGraphGen.roadGraphGen.graph import Graph
 from roadGraphGen.roadGraphGen.integrator import RK4Integrator
-# from roadGraphGen.roadGraphGen.lot_finder import LotFinder
 from roadGraphGen.roadGraphGen.streamline_parameters import StreamlineParameters
 from roadGraphGen.roadGraphGen.streamlines import StreamlineGenerator
 from roadGraphGen.roadGraphGen.tensor_field import TensorField
@@ -48,7 +47,8 @@ class RGG_GraphGenerator():
         )
 
     def generate(self, with_visualization: bool = True):
-        print(f"\n\n--- Starting graph generation with seed {self.generator.seed} ---")
+        print(f"\n\n--- Starting graph generation of size {int(self.generator.world_dimensions[0])} x "
+              f"{int(self.generator.world_dimensions[1])} with seed {self.generator.seed} ---")
 
         # Add two grid and one radial basis field to the global field.
         self.field.add_grid(Vector((1381, 788)), 1500, 35, 1.983775)
@@ -62,7 +62,7 @@ class RGG_GraphGenerator():
 
         self.generator.create_all_streamlines()
 
-        print(f"Streamlines generation completed in {time() - t:.2f}s")
+        print(f"Generation of streamlines completed in {time() - t:.2f}s")
 
         # Generate graph from generated streamlines.
         print("\n- Starting generation of graph -")
@@ -71,7 +71,7 @@ class RGG_GraphGenerator():
 
         self.graph = Graph(self.generator)
 
-        print(f"Graph generation completed in {time() - t:.2f}s")
+        print(f"Generation of graph completed in {time() - t:.2f}s")
 
         if with_visualization:
             print("\n- Starting visualization of graph -")
@@ -81,11 +81,7 @@ class RGG_GraphGenerator():
             visualize_edges(self.graph)
             visualize_nodes(self.graph)
 
-            print(f"Graph visualization completed in {time() - t:.2f}s")
-
-        # poly = LotFinder(graph)
-        # poly.find_lots()
-        # place_polygons(poly)
+            print(f"Visualization of graph completed in {time() - t:.2f}s")
 
 
 # ------------------------------------------------------------------------
@@ -151,29 +147,3 @@ def visualize_nodes(graph: Graph, prefix=''):
         n = bpy.data.objects.new("Node", cube_mesh)
         nodes.objects.link(n)
         n.location = node.co.to_3d()
-
-
-# def place_polygons(poly_generator: LotFinder):
-#     try:
-#         lots = bpy.data.collections["lots"]
-#         bpy.ops.object.select_all(action='DESELECT')
-#         for obj in lots.objects:
-#             obj.select_set(True)
-#         bpy.ops.object.delete()
-#     except Exception:
-#         lots = bpy.data.collections.new("lots")
-#         bpy.context.scene.collection.children.link(lots)
-
-#     for lot in poly_generator.lots:
-#         if len(lot) < 3:
-#             continue
-#         bm = bmesh.new()
-#         mesh = bpy.data.meshes.new('lot')
-#         bm.from_mesh(mesh)
-#         verts = []
-#         for point in lot:
-#             verts.append(bm.verts.new(point.to_3d().to_tuple()))
-#         bm.faces.new(verts)
-#         bm.to_mesh(mesh)
-#         obj = bpy.data.objects.new('lot', mesh)
-#         lots.objects.link(obj)
