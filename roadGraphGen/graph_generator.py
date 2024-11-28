@@ -94,12 +94,16 @@ def visualize_edges(graph: Graph, prefix=''):
     try:
         grid = bpy.data.collections[prefix + "grid"]
         bpy.ops.object.select_all(action='DESELECT')
+
         for child in grid.children:
             for obj in child.objects:
                 obj.select_set(True)
+
         for obj in grid.objects:
             obj.select_set(True)
+
         bpy.ops.object.delete()
+
         for child in grid.children:
             bpy.data.collections.remove(child)
     except Exception:
@@ -109,12 +113,14 @@ def visualize_edges(graph: Graph, prefix=''):
     for streamline in graph.streamline_sections:
         sl = bpy.data.collections.new("streamline")
         grid.children.link(sl)
+
         for section in streamline:
             curve = bpy.data.curves.new("section", 'CURVE')
             curve.splines.new('BEZIER')
             curve.splines.active.bezier_points.add(len(section) - 1)
             obj = bpy.data.objects.new("section", curve)
             sl.objects.link(obj)
+
             for i in range(len(section)):
                 curve.splines.active.bezier_points[i].co = section[i].to_3d()
                 curve.splines.active.bezier_points[i].handle_right_type = 'VECTOR'
@@ -144,6 +150,6 @@ def visualize_nodes(graph: Graph, prefix=''):
             # Ignore the node if it has no neigbors
             continue
 
-        n = bpy.data.objects.new("Node", cube_mesh)
-        nodes.objects.link(n)
-        n.location = node.co.to_3d()
+        node = bpy.data.objects.new("Node", cube_mesh)
+        nodes.objects.link(node)
+        node.location = node.co.to_3d()
