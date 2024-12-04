@@ -145,11 +145,11 @@ def visualize_nodes(graph: Graph, prefix=''):
     bm.to_mesh(cube_mesh)
     bm.free()
 
-    for node in graph.nodes:
-        if not [*node.neighbors]:
+    for graph_node in graph.nodes:
+        if not [*graph_node.neighbors]:
             # Ignore the node if it has no neigbors
             continue
 
         node = bpy.data.objects.new("Node", cube_mesh)
         nodes.objects.link(node)
-        node.location = node.co.to_3d()
+        node.location = graph_node.co.to_3d()
