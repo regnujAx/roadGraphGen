@@ -27,7 +27,7 @@ class Node():
 
         self.edges = []
         self.border_edges = []
-        self.curves = []
+        self.roads = []
 
     @property
     def node_type(self):
