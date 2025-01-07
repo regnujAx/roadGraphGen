@@ -87,16 +87,13 @@ class RGG_GraphGenerator():
     def visualize_edges(self, prefix=''):
         try:
             grid = bpy.data.collections[prefix + "grid"]
-            bpy.ops.object.select_all(action='DESELECT')
 
             for child in grid.children:
                 for obj in child.objects:
-                    obj.select_set(True)
+                    bpy.data.objects.remove(obj, do_unlink=True)
 
             for obj in grid.objects:
-                obj.select_set(True)
-
-            bpy.ops.object.delete()
+                bpy.data.objects.remove(obj, do_unlink=True)
 
             for child in grid.children:
                 bpy.data.collections.remove(child)
@@ -124,10 +121,9 @@ class RGG_GraphGenerator():
     def visualize_nodes(self, prefix=''):
         try:
             nodes = bpy.data.collections[prefix + "nodes"]
-            bpy.ops.object.select_all(action='DESELECT')
+
             for obj in nodes.objects:
-                obj.select_set(True)
-            bpy.ops.object.delete()
+                bpy.data.objects.remove(obj, do_unlink=True)
         except Exception:
             nodes = bpy.data.collections.new(prefix + "nodes")
             bpy.context.scene.collection.children.link(nodes)
