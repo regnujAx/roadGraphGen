@@ -12,7 +12,7 @@ from roadGraphGen.roadGraphGen.tensor_field import TensorField
 
 
 class RGG_GraphGenerator():
-    def __init__(self, width: int = 100, height: int = 100, seed: int = None):
+    def __init__(self, width: int = 100, height: int = 100, seed: int = -1):
         # Create new global TensorField.
         self.field = TensorField()
 
@@ -47,7 +47,7 @@ class RGG_GraphGenerator():
         )
 
     def generate(self, with_visualization: bool = True):
-        print(f"\n\n--- Starting graph generation of size {int(self.generator.world_dimensions[0])} x "
+        print(f"\n\n--- Start graph generation of size {int(self.generator.world_dimensions[0])} x "
               f"{int(self.generator.world_dimensions[1])} with seed {self.generator.seed} ---")
 
         # Add two grid and one radial basis field to the global field.
@@ -56,7 +56,7 @@ class RGG_GraphGenerator():
         self.field.add_radial(Vector((800, 888)), 750, 55)
 
         # Generate all streamlines.
-        print("\n- Starting generation of streamlines -")
+        print("\n- Start generation of streamlines -")
 
         t = time()
 
@@ -65,7 +65,7 @@ class RGG_GraphGenerator():
         print(f"Generation of streamlines completed in {time() - t:.2f}s")
 
         # Generate graph from generated streamlines.
-        print("\n- Starting generation of graph -")
+        print("\n- Start generation of graph -")
 
         t = time()
 
@@ -74,7 +74,7 @@ class RGG_GraphGenerator():
         print(f"Generation of graph completed in {time() - t:.2f}s")
 
         if with_visualization:
-            print("\n- Starting visualization of graph -")
+            print("\n- Start visualization of graph -")
 
             t = time()
 

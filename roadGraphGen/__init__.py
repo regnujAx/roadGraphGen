@@ -6,9 +6,9 @@ from roadGraphGen.roadGraphGen.graph_generator import RGG_GraphGenerator
 bl_info = {
     "name": "roadGraphGen",
     "blender": (3, 6, 12),
-    "location": "View3D > Toolbar > RoadNetGen",
+    "location": "View3D > Toolbar > RoadGraphGen",
     "category": "Object",
-    "description": "Generate a procedural road net."
+    "description": "Generate a procedural road graph."
 }
 
 
@@ -21,7 +21,7 @@ bl_info = {
 class RGG_BasePanel():
     bl_space_type = "VIEW_3D"
     bl_region_type = "UI"
-    bl_category = "RoadNetGen"
+    bl_category = "RoadGraphGen"
 
 
 # ------------------------------------------------------------------------
@@ -32,12 +32,12 @@ class RGG_BasePanel():
 # Creates panel in the 3D Viewport sidebar (open with 'N' by default).
 # Includes button to execute main function and test generation of road graph based on tensor field
 # defined manually below.
-class RGG_RoadNetPanel(RGG_BasePanel, bpy.types.Panel):
-    bl_label = "Road Net Generator"
+class RGG_RoadGraphPanel(RGG_BasePanel, bpy.types.Panel):
+    bl_label = "Road Graph Generator"
 
     def draw(self, context):
         layout = self.layout
-        layout.operator("rng.generate_net")
+        layout.operator("rgg.generate_graph")
 
 
 # ------------------------------------------------------------------------
@@ -45,8 +45,8 @@ class RGG_RoadNetPanel(RGG_BasePanel, bpy.types.Panel):
 # ------------------------------------------------------------------------
 
 
-class RGG_GenerateNet(bpy.types.Operator):
-    bl_idname = "rng.generate_net"
+class RGG_GenerateGraph(bpy.types.Operator):
+    bl_idname = "rgg.generate_graph"
     bl_label = "Generate"
 
     def execute(self, context):
@@ -57,13 +57,13 @@ class RGG_GenerateNet(bpy.types.Operator):
 
 
 # ------------------------------------------------------------------------
-#    Registration of Operators and Panel
+#    Registration of Panel and Operator
 # ------------------------------------------------------------------------
 
 
 classes = [
-    RGG_RoadNetPanel,
-    RGG_GenerateNet
+    RGG_RoadGraphPanel,
+    RGG_GenerateGraph
 ]
 
 

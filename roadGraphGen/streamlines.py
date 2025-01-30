@@ -41,7 +41,7 @@ class StreamlineGenerator:
             origin: Vector,
             world_dimensions: Vector,
             parameters: StreamlineParameters,
-            seed: int = None):
+            seed: int):
 
         self.SEED_AT_ENDPOINTS = False
         self.NEAR_EDGE = 3
@@ -56,7 +56,7 @@ class StreamlineGenerator:
         self.origin = origin
         self.world_dimensions = world_dimensions
         self.parameters = parameters
-        self.seed = seed if seed is not None else self.randomize_seed()
+        self.seed = seed if seed >= 0 else self.randomize_seed()
         self.rng = np.random.default_rng(self.seed)
 
         # Make sure dsep is not larger than dtest.
