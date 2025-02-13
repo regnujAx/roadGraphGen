@@ -32,8 +32,9 @@ class RGG_BasePanel():
 # Creates panel in the 3D Viewport sidebar (open with 'N' by default).
 # Includes button to execute main function and test generation of road graph based on tensor field
 # defined manually below.
-class RGG_RoadGraphPanel(RGG_BasePanel, bpy.types.Panel):
+class RGG_RoadGraphGenPanel(RGG_BasePanel, bpy.types.Panel):
     bl_label = "Road Graph Generator"
+    bl_idname = "OBJECT_PT_roadGraphGen_panel"
 
     def draw(self, context):
         layout = self.layout
@@ -62,7 +63,7 @@ class RGG_GenerateGraph(bpy.types.Operator):
 
 
 classes = [
-    RGG_RoadGraphPanel,
+    RGG_RoadGraphGenPanel,
     RGG_GenerateGraph
 ]
 
